@@ -28,9 +28,10 @@ app.delete("/api/movies/:id", movieHandlers.deleteMovie);
 //users
 const userHandlers = require("./userHandlers");
 const { validateUser } = require("./validators");
+const { hashPassword } = require("./auth");
 
 app.get("/api/users", userHandlers.getUsers);
-app.post("/api/users", validateUser, userHandlers.postUser);
+app.post("/api/users", hashPassword, userHandlers.postUser);
 
 app.get("/api/users/:id", userHandlers.getUserById);
 app.delete("/api/users/:id", userHandlers.deleteUser);
